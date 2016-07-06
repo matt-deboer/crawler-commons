@@ -50,7 +50,7 @@ import crawlercommons.sitemaps.AbstractSiteMap.SitemapType;
  * 
  * </feed>
  */
-class SiteMapAtomSAXHandler extends AbstractSiteMapSAXHandler {
+class SiteMapAtomSAXHandler extends DefaultSiteMapSAXHandler {
 
     private SiteMap sitemap;
     private URL loc;

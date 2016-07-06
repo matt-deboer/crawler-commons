@@ -276,7 +276,7 @@ public class SiteMapParser {
     private AbstractSiteMap processXml(URL sitemapUrl, InputSource is) throws UnknownFormatException {
 
         SAXParserFactory factory = SAXParserFactory.newInstance();
-        AbstractSiteMapSAXHandler handler = new AbstractSiteMapSAXHandler(sitemapUrl, strict);
+        DefaultSiteMapSAXHandler handler = new DefaultSiteMapSAXHandler(sitemapUrl, strict);
         try {
             SAXParser saxParser = factory.newSAXParser();
             saxParser.parse(is, handler);

@@ -16,18 +16,17 @@
  */
 package crawlercommons.sitemaps;
 
-import static crawlercommons.sitemaps.SiteMapParser.LOG;
+import crawlercommons.sitemaps.AbstractSiteMap.SitemapType;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
 import java.util.LinkedList;
 
-import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
-
-import crawlercommons.sitemaps.AbstractSiteMap.SitemapType;
+import static crawlercommons.sitemaps.SiteMapParser.LOG;
 
 /**
  * Parse XML that contains a Sitemap Index. Example Sitemap Index:
@@ -40,7 +39,7 @@ import crawlercommons.sitemaps.AbstractSiteMap.SitemapType;
  * <lastmod>2005-01-01</lastmod> </sitemap> </sitemapindex>
  * 
  */
-class SiteMapIndexSAXHandler extends AbstractSiteMapSAXHandler {
+class SiteMapIndexSAXHandler extends DefaultSiteMapSAXHandler {
 
     private SiteMapIndex sitemap;
     private URL loc;
@@ -95,10 +94,12 @@ class SiteMapIndexSAXHandler extends AbstractSiteMapSAXHandler {
     }
 
     public void error(SAXParseException e) throws SAXException {
+        // Attempt to parse broken/invalid site-maps where possible
         maybeAddSiteMap();
     }
 
     public void fatalError(SAXParseException e) throws SAXException {
+        // Attempt to parse broken/invalid site-maps where possible
         maybeAddSiteMap();
     }
 }

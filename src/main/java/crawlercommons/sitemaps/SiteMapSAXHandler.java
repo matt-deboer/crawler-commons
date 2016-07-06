@@ -40,7 +40,7 @@ import crawlercommons.sitemaps.AbstractSiteMap.SitemapType;
  * 
  * @author mdeboer
  */
-class SiteMapSAXHandler extends AbstractSiteMapSAXHandler {
+class SiteMapSAXHandler extends DefaultSiteMapSAXHandler {
 
     private SiteMap sitemap;
     private URL loc;

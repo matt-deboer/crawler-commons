@@ -58,7 +58,7 @@ import crawlercommons.sitemaps.AbstractSiteMap.SitemapType;
  * 
  * </channel> </rss>
  */
-class SiteMapRSSSAXHandler extends AbstractSiteMapSAXHandler {
+class SiteMapRSSSAXHandler extends DefaultSiteMapSAXHandler {
 
     private SiteMap sitemap;
     private URL loc;
@@ -76,7 +76,7 @@ class SiteMapRSSSAXHandler extends AbstractSiteMapSAXHandler {
      * (non-Javadoc)
      * 
      * @see
-     * crawlercommons.sitemaps.AbstractSiteMapSAXHandler#startElement(java.lang
+     * crawlercommons.sitemaps.DefaultSiteMapSAXHandler#startElement(java.lang
      * .String, java.lang.String, java.lang.String, org.xml.sax.Attributes)
      */
     @Override
@@ -87,7 +87,7 @@ class SiteMapRSSSAXHandler extends AbstractSiteMapSAXHandler {
      * (non-Javadoc)
      * 
      * @see
-     * crawlercommons.sitemaps.AbstractSiteMapSAXHandler#endElement(java.lang
+     * crawlercommons.sitemaps.DefaultSiteMapSAXHandler#endElement(java.lang
      * .String, java.lang.String, java.lang.String)
      */
     @Override
@@ -102,7 +102,7 @@ class SiteMapRSSSAXHandler extends AbstractSiteMapSAXHandler {
     /*
      * (non-Javadoc)
      * 
-     * @see crawlercommons.sitemaps.AbstractSiteMapSAXHandler#characters(char[],
+     * @see crawlercommons.sitemaps.DefaultSiteMapSAXHandler#characters(char[],
      * int, int)
      */
     @Override

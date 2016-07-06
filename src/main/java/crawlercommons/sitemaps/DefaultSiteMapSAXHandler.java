@@ -16,32 +16,32 @@
  */
 package crawlercommons.sitemaps;
 
-import java.net.URL;
-import java.util.LinkedList;
-
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import java.net.URL;
+import java.util.LinkedList;
+
 /**
  * Provides a base SAX handler for parsing of XML documents representing
  * sub-classes of AbstractSiteMap.
  */
-public class AbstractSiteMapSAXHandler extends DefaultHandler {
+public class DefaultSiteMapSAXHandler extends DefaultHandler {
 
     private LinkedList<String> elementStack;
-    private AbstractSiteMapSAXHandler delegate;
+    private DefaultSiteMapSAXHandler delegate;
     private URL url;
     private boolean strict;
     private UnknownFormatException exception;
 
-    protected AbstractSiteMapSAXHandler(LinkedList<String> elementStack, boolean strict) {
+    protected DefaultSiteMapSAXHandler(LinkedList<String> elementStack, boolean strict) {
         this.elementStack = elementStack;
         this.strict = strict;
     }
 
-    public AbstractSiteMapSAXHandler(URL url, boolean strict) {
+    public DefaultSiteMapSAXHandler(URL url, boolean strict) {
         this.elementStack = new LinkedList<String>();
         this.url = url;
         this.strict = strict;
@@ -90,9 +90,7 @@ public class AbstractSiteMapSAXHandler extends DefaultHandler {
     }
 
     public void characters(char ch[], int start, int length) throws SAXException {
-        if (delegate != null) {
-            delegate.characters(ch, start, length);
-        }
+        delegate.characters(ch, start, length);
     }
 
     protected String currentElement() {
@@ -100,7 +98,7 @@ public class AbstractSiteMapSAXHandler extends DefaultHandler {
     }
 
     protected String currentElementParent() {
-        return (elementStack.size() < 2) ? null : elementStack.get(1);
+        return elementStack.get(elementStack.size() - 1);
     }
 
     public AbstractSiteMap getSiteMap() {
@@ -108,14 +106,10 @@ public class AbstractSiteMapSAXHandler extends DefaultHandler {
     }
 
     public void error(SAXParseException e) throws SAXException {
-        if (delegate != null) {
-            delegate.error(e);
-        }
+        delegate.error(e);
     }
 
     public void fatalError(SAXParseException e) throws SAXException {
-        if (delegate != null) {
-            delegate.fatalError(e);
-        }
+        delegate.fatalError(e);
     }
 }
